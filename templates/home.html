@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title> Pagina de Inicio </title>
+</head>
+
+<body>
+    <h1> Bienvenido a Flask Notes </h1>
+    <ul>
+        {% for note in notes %}
+        <li>
+            {{ note.title }}
+            <br>
+            {{ note.content }}
+        </li>
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('create_note')}}">Agregar Nueva Nota</a>
+</body>
+
+</html>
