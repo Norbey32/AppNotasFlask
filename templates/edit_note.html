@@ -10,12 +10,12 @@
     <form method="POST"> 
 
     <label for=title">Título</label>
-    <input type="text" name="title" id="title">
+    <input type="text" name="title" id="title" value="{{ note.title }}">
     <br>
     <label for="content">Contenido</label>
-    <input type="text" name="content" id="content">
+    <input type="text" name="content" id="content" value="{{ note.content }}">
 
-    <input type="Submit" value="Crear Nota"> 
+    <input type="Submit" value="Guardar"> 
 </form>
 </body>
 </html>
