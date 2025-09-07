@@ -12,3 +12,8 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SECRET_KEY ="this-is-not-secret"
 
+class TestConfig:
+    SQLALCHEMY_DATABASE_URI = "sqlite:///test_notes.db"
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    SECRET_KEY ="this-is-not-secret"
+    TESTING = True

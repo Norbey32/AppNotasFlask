@@ -1,10 +1,14 @@
-from flask import redirect, request, jsonify, render_template, url_for, Blueprint, flash
+from flask import redirect, request, jsonify, render_template, url_for, Blueprint, flash, session
 from models import Note, db
 
 notes_bp = Blueprint("notes", __name__)
 
 @notes_bp.route('/')
 def home():
+    if "user" not in session:
+        flash("Por favor, inicia sesión para acceder a las notas", "warning")
+        return redirect(url_for("auth.login"))
+    
     notes = Note.query.all()
     return render_template("home.html", notes=notes)
 
@@ -14,6 +18,15 @@ def create_note():
     if request.method == "POST":
         title = request.form.get("title", "")
         content = request.form.get("content", "")
+
+        if not len(title.strip()) > 10:
+            flash("El título debe tener al menos 10 caracteres", "error")
+            return render_template("note_form.html")
+        
+        if not len(content.strip()) > 300:
+            flash("El contenido debe tener al menos 300 caracteres", "error")
+            return render_template("note_form.html")
+
 
         note_db = Note(
             title=title, content=content
